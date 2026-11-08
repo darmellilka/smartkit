@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SmartKit — free, simple online tools for creators and everyday tasks.">
+  <title>SmartKit — Free Online Tools</title>
+  <style>
+    :root{--ink:#172033;--muted:#667085;--brand:#5b5ce2;--bg:#f6f7fb;--line:#e6e8f0;--card:#fff}
+    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+    header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}
+    .wrap{width:min(100% - 32px,1000px);margin:auto}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+    .logo{font-weight:850;font-size:1.35rem;letter-spacing:-.04em}.logo span{color:var(--brand)}
+    button,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:10px 14px;font-weight:700}
+    .lang{background:#f0f1ff;color:var(--brand)}
+    .hero{padding:54px 0 30px;text-align:center}.eyebrow{color:var(--brand);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+    h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-.055em;margin:12px auto;max-width:750px}
+    .sub{color:var(--muted);font-size:1.05rem;max-width:620px;margin:0 auto 24px;line-height:1.6}
+    .search{display:block;width:min(100%,560px);margin:auto;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;outline-color:var(--brand)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;padding:20px 0 54px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 5px 20px #18204408}
+    .icon{width:42px;height:42px;border-radius:12px;background:#f0f1ff;display:grid;place-items:center;font-size:1.25rem}
+    h2{font-size:1.1rem;margin:14px 0 6px}.desc{color:var(--muted);font-size:.92rem;line-height:1.5;min-height:42px}
+    textarea{width:100%;min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px;outline-color:var(--brand)}
+    .stats{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin-top:10px}.stats b{color:var(--ink)}
+    .soon{display:inline-block;margin-top:12px;color:var(--brand);font-size:.82rem;font-weight:800}
+    footer{text-align:center;color:var(--muted);padding:22px 0 34px;font-size:.85rem}
+    @media(max-width:520px){.hero{padding-top:38px}.grid{padding-top:12px}.nav{padding:12px 0}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="logo">Smart<span>Kit</span></div><button class="lang" id="language" type="button">Français</button></div></header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow" data-en="Free tools for everyone" data-fr="Des outils gratuits pour tous">Free tools for everyone</div>
+    <h1 data-en="Small tools. Big time savings." data-fr="Des outils simples. Du temps gagné.">Small tools. Big time savings.</h1>
+    <p class="sub" data-en="Useful, free online tools for creators, students and everyday work. No account needed." data-fr="Des outils en ligne utiles et gratuits pour les créateurs, les étudiants et le quotidien. Aucun compte nécessaire.">Useful, free online tools for creators, students and everyday work. No account needed.</p>
+    <input class="search" id="search" type="search" placeholder="Search a tool..." aria-label="Search tools">
+  </section>
+  <section class="grid" id="tools">
+    <article class="card" data-search="word counter character count compteur mots caractères">
+      <div class="icon">✍️</div><h2 data-en="Word & character counter" data-fr="Compteur de mots et caractères">Word & character counter</h2>
+      <p class="desc" data-en="Count words and characters instantly as you type." data-fr="Compte les mots et les caractères pendant que tu écris.">Count words and characters instantly as you type.</p>
+      <textarea id="textInput" placeholder="Type or paste your text here..." aria-label="Text to count"></textarea>
+      <div class="stats"><span><b id="words">0</b> <span data-en="words" data-fr="mots">words</span></span><span><b id="chars">0</b> <span data-en="characters" data-fr="caractères">characters</span></span></div>
+    </article>
+    <article class="card" data-search="bio generator social media instagram tiktok générateur bio réseaux sociaux">
+      <div class="icon">✨</div><h2 data-en="Social bio ideas" data-fr="Idées de bio pour réseaux sociaux">Social bio ideas</h2>
+      <p class="desc" data-en="Get a simple starting point for your profile description." data-fr="Trouve une base simple pour rédiger la description de ton profil.">Get a simple starting point for your profile description.</p>
+      <button class="lang" id="bioButton" data-en="Generate an idea" data-fr="Générer une idée">Generate an idea</button>
+      <p id="bioOutput" class="desc" aria-live="polite"></p>
+    </article>
+    <article class="card" data-search="text case uppercase lowercase convertisseur texte majuscule minuscule">
+      <div class="icon">🔠</div><h2 data-en="Text case converter" data-fr="Convertisseur de casse">Text case converter</h2>
+      <p class="desc" data-en="Convert text to uppercase or lowercase." data-fr="Transforme ton texte en majuscules ou minuscules.">Convert text to uppercase or lowercase.</p>
+      <textarea id="caseInput" placeholder="Enter text..." aria-label="Text to convert"></textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="lang" id="upper">UPPERCASE</button><button class="lang" id="lower">lowercase</button></div>
+    </article>
+    <article class="card" data-search="hashtag ideas generator générateur hashtags">
+      <div class="icon">#️⃣</div><h2 data-en="Hashtag starter" data-fr="Suggestions de hashtags">Hashtag starter</h2>
+      <p class="desc" data-en="Enter a topic to get a few hashtag ideas." data-fr="Entre un thème pour obtenir quelques idées de hashtags.">Enter a topic to get a few hashtag ideas.</p>
+      <input class="search" style="width:100%;margin-top:12px" id="topic" placeholder="e.g. travel / voyage">
+      <button class="lang" style="margin-top:10px" id="hashButton" data-en="Create hashtags" data-fr="Créer des hashtags">Create hashtags</button>
+      <p id="hashOutput" class="desc" aria-live="polite"></p>
+    </article>
+  </section>
+</main>
+<footer>© <span id="year"></span> SmartKit · <span data-en="Free tools, made simple." data-fr="Des outils gratuits, tout simplement.">Free tools, made simple.</span></footer>
+<script>
+  let lang = "en";
+  const $ = id => document.getElementById(id);
+  $("year").textContent = new Date().getFullYear();
+  $("language").addEventListener("click", () => {
+    lang = lang === "en" ? "fr" : "en";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-en]").forEach(el => el.textContent = el.dataset[lang]);
+    $("language").textContent = lang === "en" ? "Français" : "English";
+    $("search").placeholder = lang === "en" ? "Search a tool..." : "Rechercher un outil...";
+    $("textInput").placeholder = lang === "en" ? "Type or paste your text here..." : "Écris ou colle ton texte ici...";
+    $("caseInput").placeholder = lang === "en" ? "Enter text..." : "Entre ton texte...";
+    $("topic").placeholder = lang === "en" ? "e.g. travel / voyage" : "ex. voyage / cuisine";
+  });
+  $("textInput").addEventListener("input", e => {
+    const value = e.target.value.trim();
+    $("words").textContent = value ? value.split(/\s+/).length : 0;
+    $("chars").textContent = e.target.value.length;
+  });
+  $("upper").onclick = () => $("caseInput").value = $("caseInput").value.toUpperCase();
+  $("lower").onclick = () => $("caseInput").value = $("caseInput").value.toLowerCase();
+  const bios = ["Creating every day ✨ | Sharing ideas & inspiration","Dream big. Start small. Keep going.","Créativité • Motivation • Progrès"];
+  $("bioButton").onclick = () => $("bioOutput").textContent = bios[Math.floor(Math.random()*bios.length)];
+  $("hashButton").onclick = () => {
+    const topic = $("topic").value.trim().replace(/[^\p{L}\p{N} ]/gu,"").replace(/\s+/g,"");
+    $("hashOutput").textContent = topic ? ["#"+topic,"#"+topic+"Ideas","#"+topic+"Daily","#ExploreMore"].join(" ") : (lang==="en" ? "Enter a topic first." : "Entre d'abord un thème.");
+  };
+  $("search").addEventListener("input", e => {
+    const q=e.target.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card => card.hidden = !card.dataset.search.includes(q));
+  });
+</script>
+</body>
+</html>
